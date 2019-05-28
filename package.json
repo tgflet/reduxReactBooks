@@ -1,0 +1,22 @@
+{
+  "name": "reduxbooks",
+  "version": "0.1.0",
+  "description": "Using Redux and Sequelize for a Book Review App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Tom Fletcher",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^7.11.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^5.8.6"
+  }
+}
