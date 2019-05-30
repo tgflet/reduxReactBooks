@@ -1,5 +1,7 @@
 const{ User } = require('../utils/sequelize')
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const {SECRET} = require('../utils/config');
 
 class Users{
     create(req, res){
@@ -10,10 +12,17 @@ class Users{
                     error: err
                 });
             }else{
-                const newUser = {...req.body, password:hash};
-                console.log(newUser)
+                let newUser = {...req.body, password:hash};
+                
                 User.create(newUser)
-                .then(user => res.json(user)) 
+                .then(user => {
+                    const token = jwt.sign({id: user.id, user: user.userName},SECRET,
+                        {expiresIn:86400})
+                    console.log(user.id)
+                    res.json({token, user} )
+                })
+                
+                
             }
         })
     }
@@ -41,9 +50,13 @@ class Users{
             }
             if (result){
                 console.log('the passwords match')
+                var token = jwt.sign({id: verified.id, user: verified.userName},SECRET,
+                    {expiresIn:86400})
                 return res.status(200).json({
                     success: 'signin successful',
-                    user: verified.userName
+                    user: verified.userName,
+                    id: verified.id,
+                    token : token
                 })
             }
             return res.status(401).json({
