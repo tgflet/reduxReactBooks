@@ -24,6 +24,7 @@ module.exports = function(app){
     app.delete('/api/users/:id', Users.delete);
     app.post('/api/users/signin', Users.verify);
     app.put('/api/users/:id', Users.update);
+    app.post('/api/users/token', Users.profile);
 
     // Review Rest Commands
     app.post('/api/reviews',Reviews.create);

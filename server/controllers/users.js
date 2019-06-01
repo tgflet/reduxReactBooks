@@ -2,6 +2,7 @@ const{ User } = require('../utils/sequelize')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const {SECRET} = require('../utils/config');
+const {verifyToken} = require('../security/verify-token');
 
 class Users{
     create(req, res){
@@ -64,5 +65,37 @@ class Users{
             })
         })
     }
+    async profile(req, res){
+        
+        const result = await verifyToken(req.body)
+        console.log(result)
+        User.findOne({where: {id: result}})
+        .then(user => res.json({
+            user: user.userName,
+            id: user.id
+        }))
+    }
 }
+
+        // const id = await verifyToken(req.body)
+        // console.log(id)
+
+            // User.findOne({where: {id: id}}, (err, user)=>{
+            //     if(err){
+            //         return res.status(500).json({
+            //             message: "there was an issue finding the user"
+            //         })
+            //     }
+            //     if(!user){
+            //         return res.status(404).json({
+            //             message: 'User not found'
+            //         })
+            //     }else{
+            //         res.json({
+            //             user: user.newUser,
+            //             id: user.id
+            //         })
+            //     }
+            // })    }}
+
 module.exports = new Users();

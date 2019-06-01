@@ -2,8 +2,10 @@ const jwt = require('jsonwebtoken');
 const {SECRET} = require('../utils/config');
 
 const verifyToken = (req, res, next) => {
-    console.log(req.headers)
+    
+
     var token = req.headers['x-access-token'];
+    var user = '';
     if (!token){
         return res.status(403).json({
             auth: false,
@@ -18,10 +20,13 @@ const verifyToken = (req, res, next) => {
                 message: 'Failed to authenticate token'
             })
         }
-        console.log(decoded.id)
-        req.userId = decoded.id
-        next()
+        user = decoded.id
+        console.log(`This is the id from the verify-token.js ${decoded.id}`)
+        
+        return user
+        
     })
+    return user;
 }
 
-module.exports = verifyToken;
+module.exports = {verifyToken};
