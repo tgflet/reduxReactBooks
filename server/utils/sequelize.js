@@ -3,11 +3,10 @@ const UserModel = require('../models/user')
 const BookModel = require('../models/book')
 const ReviewModel = require('../models/review')
 const AuthorModel = require('../models/author')
+const {postgres} = require('./postgres')
 
-const sequelize = new Sequelize('booktalk', 'Catalyst', '',{
-    host: 'localhost',
-    dialect: 'postgres'
-});
+
+const sequelize = postgres;
 
 const User = UserModel(sequelize, Sequelize)
 const Book = BookModel(sequelize, Sequelize)

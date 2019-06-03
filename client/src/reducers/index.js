@@ -2,6 +2,9 @@ import {combineReducers} from 'redux';
 import bookReducer from './bookReducers';
 import {reducer as formReducer} from 'redux-form'
 import authReducer from './authReducers';
+import userReducer from './userReducers';
+import authorReducer from './authorReducers'; 
+import reviewReducer from './reviewsReducer';
 
 
 
@@ -9,5 +12,8 @@ import authReducer from './authReducers';
 export default combineReducers({
     books: bookReducer,
     form: formReducer,
-    auth: authReducer
+    auth: authReducer,
+    users: userReducer,
+    authors: authorReducer,
+    reviews: reviewReducer
 })

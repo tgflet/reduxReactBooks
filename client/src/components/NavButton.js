@@ -27,9 +27,25 @@ class NavButton extends Component{
            );
        }else{
            return(
-               <button onClick={()=>history.push('/user')} className="ui green button">
+              <div className="ui simple dropdown">
+                {/* <button onClick={()=>history.push('/user')} className="ui green button">
                {this.props.username}
-               </button>
+               </button> */}
+               <div className="text ui green button ">
+               {this.props.username}&nbsp;&nbsp;
+               {/* <i class="dropdown icon"></i> */}
+               </div>
+               
+               <div className='menu'>
+                <div className='item' onClick={()=>history.push('/user')}>
+                  See Profile
+                </div>
+                <div className='item' onClick={()=>history.push('/user/update')}>
+                 Edit Account
+                </div>
+               </div>
+              </div>
+               
            ) 
        }
    }
