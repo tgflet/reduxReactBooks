@@ -37,10 +37,10 @@ class NavButton extends Component{
                </div>
                
                <div className='menu'>
-                <div className='item' onClick={()=>history.push('/user')}>
+                <div className='item' onClick={()=>history.push(`/profile/${this.props.userId}`)}>
                   See Profile
                 </div>
-                <div className='item' onClick={()=>history.push('/user/update')}>
+                <div className='item' onClick={()=>history.push(`/profile/update/${this.props.userId}`)}>
                  Edit Account
                 </div>
                </div>

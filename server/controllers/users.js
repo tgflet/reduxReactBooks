@@ -20,7 +20,7 @@ class Users{
                     const token = jwt.sign({id: user.id, user: user.userName},SECRET,
                         {expiresIn:86400})
                     console.log(user.id)
-                    res.json({token, user} )
+                    res.json({token: token, user: user.userName, id: user.id} )
                 })
                 
                 
@@ -37,7 +37,7 @@ class Users{
     }
     update(req, res){
         User.update(req.body, {where: {id:req.params.id}})
-        .then(res.json({status: 'ok'}))
+        .then(user => res.json(user))
     }
     async verify(req, res){
         const verified = await User.findOne({where: {email: req.body.email}})

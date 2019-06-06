@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import bookReducer from './bookReducers';
+import bookReducer from './bookReducer';
 import {reducer as formReducer} from 'redux-form'
 import authReducer from './authReducers';
-import userReducer from './userReducers';
-import authorReducer from './authorReducers'; 
+import userReducer from './userReducer';
+import authorReducer from './authorReducer'; 
 import reviewReducer from './reviewsReducer';
 
 
